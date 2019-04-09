@@ -14,7 +14,7 @@
     </style>
     <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="#">Current</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,44 +42,90 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <h1 class="mt-4">Events Near Me</h1>
+    <div class="mt-5" style="text-align: center">
+        <h1>Events Near You</h1>
+    </div>
 
-        <div class="row">
-            <div class="card" style="width: 18rem; left: 15%;">
-                <img class="card-img-top" src="img/veld2.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">VELD Music Festival</h5>
-                    <p class="card-text">The 8th annual Veld Music Festival, presented by INK Entertainment, Canada’s leading lifestyle and entertainment company, will heat up the summer music lineup on August 3rd and 4th at Downsview Park in Toronto.</p>
-                    <a href="#" class="btn btn-primary">Details</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-4 ">
-            <div class="card" style="width: 18rem; left: 15%;">
-                <img class="card-img-top" src="img/cne.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">CNE</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-4 ">
-            <div class="card" style="width: 18rem; left: 15%;">
-                <img class="card-img-top" src="img/photowalk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Photo Walk</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+    <div id="cardBody" class="container-fluid">
+    </div>
+    <div class="row">
+        <div class="col-md-10 offset-md-1 text-center">
+            <button id="btnSubmit" type="button" class="btn btn-info">Load Data</button>
         </div>
     </div>
 
 
+    <script>
+        document.addEventListener("DOMContentLoaded", initApp);
+
+        function initApp() {
+
+
+
+            var tbody = document.querySelector("tbody");
+
+            var card = document.getElementById("cardBody");
+
+            var data=null;
+
+            var btnSubmitText=btnSubmit.textContent;
+            var url = "https://api.jsonbin.io/b/5cab77744b652413967eaba7/8";
+
+
+            var xhr=new XMLHttpRequest();
+
+            xhr.onreadystatechange = function (evt) {
+
+                if(this.readyState == XMLHttpRequest.OPENED){
+
+                    btnSubmit.textContent="Please Wait!";
+                    tbody.style.visibility="Hidden";
+                }
+                else if(this.readyState == XMLHttpRequest.DONE){
+                    if(this.status=200){
+                        data = JSON.parse(this.responseText);
+                        var row = "";
+                        var key=0;
+                        for(;key < data.section.event.length ;++key){
+                            var obj = data.section.event[key];
+                            row+="<div class='row'>";
+                            row+="<div class='card mx-auto mt-4' style='width: 18rem'>";
+                            row+="<img class='card-img-top' src="+obj.detail.image+" alt='Card image cap'>";
+                            row+="<div id='cardBody' class='card-body'>";
+
+                            row+="<h5 class='card-title'>"+obj.detail.title+"</h5>";
+                            row+="<p class='card-text'>"+obj.detail.description+"</p>";
+                            row+="<a href='#' class='btn btn-primary'>Details</a>";
+
+                            row+="</div>";
+                            row+="</div>";
+                            row+="</div>";
+                        }
+                    }
+                    else{
+                        row="<tr><td>Error: cannot get data!</td></tr>";
+                    }
+
+                    card.innerHTML=row;
+
+                    btnSubmit.textContent = "Re-"+btnSubmitText;
+                    card.style.visibility = "visible";
+
+                }
+
+            };
+
+                event.preventDefault();
+
+                xhr.open("GET", url + "?" + (new Date()).getTime(), true);
+                xhr.timeout = 6000;
+
+                xhr.send();
+                btnSubmit.style.visibility="hidden";
+
+        };
+
+    </script>
 
     </body>
 </html>
