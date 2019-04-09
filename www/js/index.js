@@ -1,46 +1,77 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+$(document).ready(function(){
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
+  //  var items = getFromLocal('memos');
+    var index;
+    loadAll(items);
+    // if input is empty disable button
+    $('button').prop('disabled', true);
+    $('input').keyup(function(){
+        if($(this).val().length !== 0) {
+            $('button').prop('disabled', false);
+        } else {
+            $('button').prop('disabled', true);
+        }
+    });
+    // bind input enter with button submit
+    $('#main-input').keypress(function(e){
+        if(e.which === 13) {
+            if ($('#main-input').val().length !== 0)
+                $('#main-button').click();
+        }
+    });
+    $('#main-button').click(function(){
+        var value = $('#main-input').val();
+        items.push(value);
+        //console.log(items[0]);
+        $('#main-input').val('');
+        loadAll(items);
+        storeToLocal('memos', items);
+        // set button to
+        $('button').prop('disabled', true);
+    });
+    // delete one item
+    $('ul').delegate("span", "click", function(event){
+        event.stopPropagation();
+        index = $('span').index(this);
+        $('li').eq(index).remove();
+        items.splice(index, 1);
+        storeToLocal('memos', items);
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    });
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    // edit panel
+    $('ul').delegate('li', 'click', function(){
+        index = $('li').index(this);
+        var content = items[index];
+        console.log(content);
+        $('#edit-input').val(content );
+    });
 
-        console.log('Received Event: ' + id);
+    $('#edit-button').click(function(){
+        items[index] = $('#edit-input').val();
+        loadAll(items);
+        storeToLocal("memos", items);
+    });
+
+    // loadAll
+    function loadAll(items){
+        $('li').remove();
+        if(items.length > 0) {
+            for(var i = 0; i < items.length; i++) {
+                $('ul').append('<li class= "list-group-item" data-toggle="modal" data-target="#editModal">' + items[i] + '<span class="glyphicon glyphicon-remove"></span</li>');
+            }
+        }
+    };
+
+    function storeToLocal(key, items){
+        localStorage[key] = JSON.stringify(items);
     }
-};
 
-app.initialize();
+    function getFromLocal(key){
+        if(localStorage[key])
+            return JSON.parse(localStorage[key]);
+        else
+            return [];
+    }
+
+});
