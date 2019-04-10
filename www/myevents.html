@@ -37,34 +37,34 @@
         </form>
     </div>
 </nav>
-<div class="jumbotron jumbotron-fluid mx-4" style="margin-top: 15%;">
-    <div class="container">
-        <p class="display-4">Fluid jumbotron</p>
-        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        <a class="btn btn-danger btn-md" href="#" role="button">Remove</a>
-    </div>
-</div>
+
 
 
 <div id="container" class="container-fluid">
 
 </div>
-<button type="button" id="btn" class="btn btn-success mt-5">Test</button>
 <script src="js/create.js"> </script>
 <script>
     $(document).ready(function () {
         var $container =$("#container");
-        var obj = JSON.parse(localStorage.getItem("1"));
         var row="";
-        $("#btn").on("click",function () {
+        var keys = Object.keys(localStorage), i =keys.length;
+
+        while(i--){
+            var obj = JSON.parse(localStorage.getItem(keys[i]));
             row+="<div class='jumbotron jumbotron-fluid mx-4' style='margin-top: 15%;'>";
             row+="<div class='container'>";
-            row+="<p class='display-4'>"+obj.title+"</p>";
+            row+="<p class='display-5'>"+obj.title+"</p>";
             row+="<p class='lead'>"+obj.date+"</p>";
-            row+="<a class='btn btn-danger btn-md'>remove</a>";
+            row+="<a class='btn btn-danger btn-md' role='button'>Remove</a>";
             row+="</div>";
             row+="</div>";
-            $container.append(row);
+            $container.html(row);
+        }
+
+
+        $("#btn").on("click",function () {
+
         })
 
 
