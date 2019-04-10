@@ -50,20 +50,19 @@
     </div>
 
 
-
-
-
     <script>
-        document.addEventListener("DOMContentLoaded", initApp);
+        $(document).ready(function initApp () {
 
-        function initApp() {
+
+            var myEvents=[];
 
             var card = document.getElementById("cardBody");
 
             var data=null;
 
-            var url = "https://api.jsonbin.io/b/5cac22cd061b5b137a618672/3";
 
+
+            var url = "https://api.jsonbin.io/b/5cac22cd061b5b137a618672/4";
 
             var xhr=new XMLHttpRequest();
 
@@ -93,38 +92,33 @@
                             row+="<div class='modal-dialog modal-dialog-centered' role='document'>";
                             row+="<div class='modal-content'>";
                             row+="<div class='model-header'>";
-                            row+="<h5 class='modal-title mt-2 ml-2' id='exampleModalLongTitle'>"+obj.detail.title+"</h5>";
+                            row+="<h5 class='modal-title mt-2 mx-3' id='exampleModalLongTitle'>"+obj.detail.title+"</h5>";
                             row+="</div>";
-                            row+="<div class='model-body mt-2 ml-2'>"+obj.detail.description+" </br>  </br> "+obj.detail.date+"</div>";
+                            row+="<div class='model-body mt-2 mx-3'>"+obj.detail.description+" </br>  </br> "+obj.detail.date+"</div>";
                             row+="<div class='modal-footer'>";
-                            row+="<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>";
-                            row+="<button type='button' class='btn btn-primary'>Add To My Events</button>";
+                            row+="<button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>";
+                            row+="<button type='button' class='btn btn-success'>Add To My Events</button>";
                             row+="</div>";
                             row+="</div>";
                             row+="</div>";
                             row+="</div>";
-
-
-
                         }
+
                     }
                     else{
                         row="<div>Error: cannot get data!</div>";
                     }
-
                     card.innerHTML=row;
-
                     card.style.visibility = "visible";
-
                 }
 
             };
-
-                event.preventDefault();
+                //event.preventDefault();
                 xhr.open("GET", url + "?" + (new Date()).getTime(), true);
                 xhr.timeout = 6000;
                 xhr.send();
-        };
+
+        });
 
     </script>
 
