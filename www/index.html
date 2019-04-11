@@ -97,7 +97,7 @@
                             row+="<div class='model-body mt-2 mx-3'>"+obj.detail.description+" </br>  </br> "+obj.detail.date+"</div>";
                             row+="<div class='modal-footer'>";
                             row+="<button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>";
-                            row+="<button type='button' class='btn btn-success'>Add To My Events</button>";
+                            row+="<button id='item-"+key+"' type='button' class='btn btn-success'>Add To My Events</button>";
                             row+="</div>";
                             row+="</div>";
                             row+="</div>";
@@ -110,6 +110,23 @@
                     }
                     card.innerHTML=row;
                     card.style.visibility = "visible";
+                    $('[id^=item-]').on("click", function () {
+                        var item= this.id.substr(5,2);
+
+                        $.getJSON("https://api.jsonbin.io/b/5cac22cd061b5b137a618672/4",function () {
+
+
+                            var obj = {
+                                title: data.section.event[item].detail.title,
+                                description: data.section.event[item].detail.description,
+                                date: data.section.event[item].detail.date,
+                                key: "item-"+item
+                            }
+                            localStorage.setItem(obj.key,JSON.stringify(obj));
+                        })
+
+
+                    })
                 }
 
             };
@@ -117,6 +134,7 @@
                 xhr.open("GET", url + "?" + (new Date()).getTime(), true);
                 xhr.timeout = 6000;
                 xhr.send();
+
 
         });
 
