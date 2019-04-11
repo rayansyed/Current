@@ -23,11 +23,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="myevents.html"><span class="fas fa-user"></span> My Events</a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event</a>
             </li>
         </ul>
@@ -49,30 +49,32 @@
         var $container =$("#container");
         var row="";
         var keys = Object.keys(localStorage), i =keys.length;
+        var item;
 
         while(i--){
             var obj = JSON.parse(localStorage.getItem(keys[i]));
+            item = obj.key;
             row+="<div class='jumbotron jumbotron-fluid mx-4' style='margin-top: 15%;'>";
             row+="<div class='container'>";
-            row+="<p class='display-5'>"+obj.title+"</p>";
+            row+="<p class='display-4'>"+obj.title+"</p>";
             row+="<p class='lead'>"+obj.date+"</p>";
-            row+="<a class='btn btn-danger btn-md' role='button'>Remove</a>";
+            row+="<button id='"+keys[i]+"' class='btn btn-danger btn-md' type='button'>Remove</button>";
             row+="</div>";
             row+="</div>";
             $container.html(row);
+
         }
 
 
-        $("#btn").on("click",function () {
-
+        $('[id^=item-]').on("click", function () {
+            localStorage.removeItem(this.id);
+            location.reload();
         })
 
-
-
-
-
-
     });
+
+
+
 </script>
 
 </body>
