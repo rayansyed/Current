@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    var myEvents=[];
     var $title = $("#inputTitle");
     var $desc = $("#inputDesc");
     var $month = $("#inputMonth");
@@ -10,16 +9,23 @@ $(document).ready(function () {
 
 
 
-    $btnCreate.on("click" ,function () {
 
+    var counter=0;
+    var item = JSON.parse(localStorage.getItem("counter"));
+    console.log(item);
+
+    $btnCreate.on("click" ,function () {
+        item++;
         var obj = {
             title: $title.val(),
             description: $desc.val(),
             date: $month.val()+ " " + $day.val()+ " " +$year.val(),
-            key: $key.val()
+            key: "item-"+item
         }
 
-        localStorage.setItem($key.val(),JSON.stringify(obj));
+        localStorage.setItem(obj.key,JSON.stringify(obj));
+        localStorage.setItem("counter",item);
+
 
 
     });
