@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map-canvas {
+            height: 100vh;
+            width: 100vw;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#">Current</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="myevents.html"><span class="fas fa-user"></span> My Events</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="maps.html"><span class="fas fa-globe-americas"></span> Event Map</a>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search for events" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+        </form>
+    </div>
+</nav>
+
+<div id="map-canvas"></div>
+<script>
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(updatePosition, onError);
+    }
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+            'message: ' + error.message + '\n');
+    }
+
+
+    window.lat = 43.469249;
+    window.lng = -79.698624;
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(updatePosition);
+        }
+        return null;
+    };
+
+
+    function updatePosition(position) {
+
+        if (position) {
+            window.lat = position.coords.latitude;
+            window.lng = position.coords.longitude;
+        }
+    }
+    setInterval(function(){updatePosition(getLocation());}, 10000);
+
+    function currentLocation() {
+        return {lat:window.lat, lng:window.lng};
+    };
+
+    var map;
+    var mark;
+
+
+    var initialize = function() {
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+            center: {lat: lat, lng: lng},
+            zoom: 14
+        });
+
+        mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+    };
+
+    window.initialize = initialize;
+
+    var redraw = function(payload) {
+        lat = payload.message.lat;
+        lng = payload.message.lng;
+
+        map.setCenter({lat:lat, lng:lng, alt:0});
+        mark.setPosition({lat:lat, lng:lng, alt:0});
+    };
+
+    var pnChannel = "map-channel";
+
+    var pubnub = new PubNub({
+        publishKey:   'AIzaSyC3-lh4LiCXQLhGptE3kT8FK9SYx3o_1WA',
+        subscribeKey: 'YOUR_SUB_KEY'
+    });
+
+    pubnub.subscribe({channels: [pnChannel]});
+    pubnub.addListener({message:redraw});
+
+    setInterval(function() {
+        pubnub.publish({channel:pnChannel, message:currentLocation()});
+    }, 5000);
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3-lh4LiCXQLhGptE3kT8FK9SYx3o_1WA&callback=initialize"
+        async defer></script>
+</body>
+</html>

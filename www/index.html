@@ -5,13 +5,14 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <title>Hello World</title>
     </head>
-    <style>
-    </style>
+    <style></style>
     <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -34,6 +35,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="maps.html"><span class="fas fa-globe-americas"></span> Event Map</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search for events" aria-label="Search">
@@ -49,6 +54,7 @@
     <div id="cardBody" class="container-fluid">
     </div>
 
+    <div id="map-canvas"></div>
 
     <script src="js/home.js"></script>
 

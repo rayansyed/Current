@@ -6,14 +6,9 @@ $(document).ready(function initApp () {
 
     }
 
-
-    var myEvents=[];
-
     var card = document.getElementById("cardBody");
 
     var data=null;
-
-
 
     var url = "https://api.jsonbin.io/b/5cac22cd061b5b137a618672/4";
 
@@ -51,6 +46,8 @@ $(document).ready(function initApp () {
                     row+="<div class='modal-footer'>";
                     row+="<button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>";
                     row+="<button id='item-"+key+"' type='button' class='btn btn-success'>Add To My Events</button>";
+                    row+="<button id='location-"+key+"' type='button' class='btn btn-light'>Location</button>";
+
                     row+="</div>";
                     row+="</div>";
                     row+="</div>";
@@ -63,6 +60,7 @@ $(document).ready(function initApp () {
             }
             card.innerHTML=row;
             card.style.visibility = "visible";
+
             $('[id^=item-]').on("click", function () {
                 var updateCounter = JSON.parse(localStorage.getItem("counter"));
                 updateCounter++;
@@ -70,7 +68,6 @@ $(document).ready(function initApp () {
                 var item= this.id.substr(5,2);
 
                 $.getJSON("https://api.jsonbin.io/b/5cac22cd061b5b137a618672/4",function () {
-
 
                     var obj = {
                         title: data.section.event[item].detail.title,
@@ -82,6 +79,10 @@ $(document).ready(function initApp () {
                 })
 
 
+            })
+
+            $('[id^=location-]').on("click", function () {
+                console.log("hello");
             })
         }
 
