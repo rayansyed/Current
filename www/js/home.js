@@ -1,6 +1,8 @@
 $(document).ready(function initApp () {
     var counter=0;
 
+
+
     if(JSON.parse(localStorage.getItem("counter")) == null){
         localStorage.setItem("counter",counter);
 
@@ -14,12 +16,17 @@ $(document).ready(function initApp () {
 
     var xhr=new XMLHttpRequest();
 
+    var footer = $("#footer");
+
+
     xhr.onreadystatechange = function (evt) {
         if(this.readyState == XMLHttpRequest.OPENED){
             console.log("please wait")
         }
         else if(this.readyState == XMLHttpRequest.DONE){
             if(this.status=200){
+
+                footer.text("No More Events To Display");
                 data = JSON.parse(this.responseText);
                 var row = "";
                 var key=0;

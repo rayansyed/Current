@@ -5,6 +5,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <meta charset="utf-8">
     <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Trade+Winds" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -24,11 +25,17 @@
             padding: 0;
         }
 
+        #navlogo{
+            font-family: 'Trade Winds', cursive;
+            color: #f54e45;
+
+        }
+
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#">Event Map</a>
+    <a id="navlogo" href="#" class="navbar-left" >CRNT</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -115,7 +122,7 @@
         //create a marker
         mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
 
-        mark = new google.maps.Marker({position:{lat:43.7493221, lng:-79.4690188}, map:map, icon:"img/mapicon.png"});
+        mark = new google.maps.Marker({position:{lat:43.7493221, lng:-79.4690188}, map:map, icon:"img/mapicon.png", title:"VELD"});
 
     };
 
