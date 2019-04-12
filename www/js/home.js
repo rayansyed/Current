@@ -31,7 +31,7 @@ $(document).ready(function initApp () {
                     row+="<div id='cardBody' class='card-body'>";
                     row+="<h5 class='card-title'>"+obj.detail.title+"</h5>";
                     row+="<p class='card-text'>"+obj.detail.description+"</p>";
-                    row+="<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#"+obj.detail.key+"'>Details</button>";
+                    row+="<button type='button' class='btn btn-dark' data-toggle='modal' data-target='#"+obj.detail.key+"'>Details</button>";
                     row+="</div>";
                     row+="</div>";
                     row+="</div>";

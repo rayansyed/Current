@@ -28,7 +28,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#">Current</a>
+    <a class="navbar-brand" href="#">Event Map</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -112,7 +112,11 @@
             zoom: 14
         });
 
+        //create a marker
         mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+
+        mark = new google.maps.Marker({position:{lat:43.7493221, lng:-79.4690188}, map:map, icon:"img/mapicon.png"});
+
     };
 
     window.initialize = initialize;

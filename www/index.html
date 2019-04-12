@@ -4,6 +4,7 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -12,11 +13,35 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <title>Hello World</title>
     </head>
-    <style></style>
+    <style>
+        #header{
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 35px;
+            color: #f54e45;
+        }
+        #navlogo{
+            font-family: 'Playfair Display', serif;
+            color: #f54e45;
+
+        }
+        .footer {
+            margin-top: 10px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f54e45;
+            color: white;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+
+        }
+
+    </style>
     <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Current</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 10px">
+        <a id="navlogo" href="#" class="navbar-left" >CRNT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,14 +72,17 @@
         </div>
     </nav>
 
-    <div class="mt-5" style="text-align: center">
-        <h1>Events Near You</h1>
+    <div>
+        <h1 id="header">Around Me</h1>
     </div>
 
     <div id="cardBody" class="container-fluid">
     </div>
 
-    <div id="map-canvas"></div>
+    <div class="footer">
+        <p>No More Events To Display</p>
+    </div>
+
 
     <script src="js/home.js"></script>
 
