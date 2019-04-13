@@ -1,4 +1,6 @@
 $(document).ready(function initApp () {
+    window.localStorage.clear();
+
     var counter=0;
 
 
