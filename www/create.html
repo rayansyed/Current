@@ -10,6 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <link href="js/jquery-mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+
+
 </head>
 <style>
     #header{
@@ -38,14 +43,14 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="myevents.html"><span class="fas fa-user"></span> My Events</a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event</a>
+                <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event<span class="sr-only">(current)</span></a>
             </li>
 
             <li class="nav-item">
@@ -53,8 +58,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search for events" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="index.html" >Search</a>
         </form>
     </div>
 </nav>
@@ -64,16 +68,24 @@
 
 <form>
 
+
+
     <div class="form-group row mx-auto" style="width: 400px">
         <label for="inputTitle" class="col-sm-2 col-form-label col-form-label-lg">Event Title</label>
         <div class="col-sm-10">
             <input id="inputTitle" type="text" class="form-control form-control-lg">
         </div>
     </div>
+
+
     <div class="form-group row mx-auto" style="width: 375px">
         <label for="inputDesc" class="col-sm-2 col-form-label col-form-label-lg">Event Description</label>
         <textarea id="inputDesc" class="form-control"  rows="3"></textarea>
     </div>
+
+
+    <div data-role="popup" id="pop" data-position-to="window" data-transition="turn"></div>
+
 
     <div class="form-group row mx-auto" style="width: 370px">
         <label class="col-sm-2 col-form-label col-form-label-lg">Date</label>

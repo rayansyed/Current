@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 
   //  var items = getFromLocal('memos');
     var index;
@@ -74,4 +74,4 @@ $(document).ready(function(){
             return [];
     }
 
-});
+});*/
