@@ -22,7 +22,8 @@ $(document).ready(function () {
         row+="</div>";
         row+="<p class='mb-1'>"+obj.description+"</p>";
         row+="<p class='mb-1'>"+obj.date+"</p>";
-        row+="<button id='"+keys[i]+"' type='button' class='btn btn-danger'>Remove</button>"
+        row+="<button id='"+keys[i]+"' type='button' class='btn btn-danger'>Remove</button>";
+        row+="<button  type='button' class='btn btn-secondary ml-2'>Share</button>";
         row+="</a>";
 
         $footer.hide();
