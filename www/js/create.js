@@ -32,7 +32,7 @@ $(document).ready(function () {
             showPopup("title and description empty!");
             return true;
         }else
-            if (tit.length<1) {
+        if (tit.length<1) {
             showPopup("title cannot be empty!");
             return true;
         }else
@@ -41,19 +41,21 @@ $(document).ready(function () {
             return true;
         }else{
 
-        localStorage.setItem(obj.key,JSON.stringify(obj));
-        localStorage.setItem("counter",item);
+            localStorage.setItem(obj.key,JSON.stringify(obj));
+            localStorage.setItem("counter",item);
 
-        window.location.replace("myevents.html");
+            window.location.replace("myevents.html");
 
-    }
+        }
 
     });
 
 
     function showPopup(message) {
-        $pop.html('<p>'+message+'</p>').popup("open");
-        setTimeout(function(){  $pop.popup("close"); }, 1000);
+        alert(message);
     }
+
+
+
 
 });

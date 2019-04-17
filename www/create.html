@@ -10,11 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
-    <link href="js/jquery-mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
-    <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
-
-
 </head>
 <style>
     #header{
@@ -43,23 +38,20 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home</a>
+                <a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="myevents.html"><span class="fas fa-user"></span> My Events</a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event</a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="maps.html"><span class="fas fa-globe-americas"></span> Event Map</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <a class="btn btn-outline-success my-2 my-sm-0" href="index.html" >Search</a>
-        </form>
     </div>
 </nav>
 <div>
@@ -68,40 +60,32 @@
 
 <form>
 
-
-
     <div class="form-group row mx-auto" style="width: 400px">
         <label for="inputTitle" class="col-sm-2 col-form-label col-form-label-lg">Event Title</label>
         <div class="col-sm-10">
             <input id="inputTitle" type="text" class="form-control form-control-lg">
         </div>
     </div>
-
-
     <div class="form-group row mx-auto" style="width: 375px">
         <label for="inputDesc" class="col-sm-2 col-form-label col-form-label-lg">Event Description</label>
         <textarea id="inputDesc" class="form-control"  rows="3"></textarea>
     </div>
 
-
-    <div data-role="popup" id="pop" data-position-to="window" data-transition="turn"></div>
-
-
     <div class="form-group row mx-auto" style="width: 370px">
         <label class="col-sm-2 col-form-label col-form-label-lg">Date</label>
         <select id="inputMonth" class="custom-select custom-select-lg">
             <option value="January" selected>January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
         </select>
     </div>
 
@@ -110,36 +94,36 @@
     <div class="form-group row mx-auto" style="width: 370px">
         <select id="inputDay" class="custom-select custom-select-lg">
             <option value="1st" selected>1st</option>
-            <option value="2">2nd</option>
-            <option value="3">3rd</option>
-            <option value="4">4th</option>
-            <option value="5">5th</option>
-            <option value="6">6th</option>
-            <option value="7">7th</option>
-            <option value="8">8th</option>
-            <option value="9">9th</option>
-            <option value="10">10th</option>
-            <option value="11">11th</option>
-            <option value="12">12th</option>
-            <option value="13">13th</option>
-            <option value="14">14th</option>
-            <option value="15">15th</option>
-            <option value="16">16th</option>
-            <option value="17">17th</option>
-            <option value="18">18th</option>
-            <option value="19">19th</option>
-            <option value="20">20th</option>
-            <option value="21">21st</option>
-            <option value="22">22nd</option>
-            <option value="23">23rd</option>
-            <option value="24">24th</option>
-            <option value="25">25th</option>
-            <option value="26">26th</option>
-            <option value="27">27th</option>
-            <option value="28">28th</option>
-            <option value="29">29th</option>
-            <option value="30">30th</option>
-            <option value="31">31st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+            <option value="5th">5th</option>
+            <option value="6th">6th</option>
+            <option value="7th">7th</option>
+            <option value="8th">8th</option>
+            <option value="9th">9th</option>
+            <option value="10th">10th</option>
+            <option value="11th">11th</option>
+            <option value="12th">12th</option>
+            <option value="13th">13th</option>
+            <option value="14th">14th</option>
+            <option value="15th">15th</option>
+            <option value="16th">16th</option>
+            <option value="17th">17th</option>
+            <option value="18th">18th</option>
+            <option value="19th">19th</option>
+            <option value="20th">20th</option>
+            <option value="21st">21st</option>
+            <option value="22nd">22nd</option>
+            <option value="23rd">23rd</option>
+            <option value="24th">24th</option>
+            <option value="25th">25th</option>
+            <option value="26th">26th</option>
+            <option value="27th">27th</option>
+            <option value="28th">28th</option>
+            <option value="29th">29th</option>
+            <option value="30th">30th</option>
+            <option value="31st">31st</option>
         </select>
 
     </div>

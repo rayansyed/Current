@@ -13,7 +13,7 @@ $(document).ready(function initApp () {
 
     //var url = "https://api.jsonbin.io/b/5cac22cd061b5b137a618672/4";
 
-    var url = "https://api.myjson.com/bins/cqwfc";
+    var url = "https://api.myjson.com/bins/5yg9s";
 
     var xhr=new XMLHttpRequest();
 
@@ -75,7 +75,7 @@ $(document).ready(function initApp () {
                 localStorage.setItem("counter",updateCounter);
                 var item= this.id.substr(5,2);
 
-                $.getJSON("https://api.myjson.com/bins/cqwfc",function () {
+                $.getJSON("https://api.myjson.com/bins/5yg9s",function () {
 
                     var obj = {
                         title: data.section.event[item].detail.title,

@@ -49,7 +49,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.html"><span class="fas fa-home"></span> Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="myevents.html"><span class="fas fa-user"></span> My Events</a>
             </li>
 
@@ -57,14 +57,11 @@
                 <a class="nav-link" href="create.html"><span class="fas fa-pencil-ruler"></span> Create Event</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="maps.html"><span class="fas fa-globe-americas"></span> Event Map<span class="sr-only">(current)</span></a>
             </li>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <a class="btn btn-outline-success my-2 my-sm-0" href="index.html" >Search</a>
-        </form>
     </div>
 </nav>
 
@@ -112,6 +109,12 @@
 
     var map;
     var mark;
+    var mark1;
+    var mark2;
+    var mark3;
+    var mark4;
+
+
 
 
     var initialize = function() {
@@ -123,7 +126,16 @@
         //create a marker
         mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
 
-        mark = new google.maps.Marker({position:{lat:43.7493221, lng:-79.4690188}, map:map, icon:"img/mapicon.png", title:"VELD"});
+        mark1 = new google.maps.Marker({position:{lat:43.7493221, lng:-79.4690188}, map:map, icon:"img/mapicon.png", title:"VELD"});
+
+        mark2 = new google.maps.Marker({position:{lat:43.63306, lng:-79.415833}, map:map, icon:"img/mapicon.png", title:"CNE"});
+
+        mark3 = new google.maps.Marker({position:{lat:43.468598, lng:-79.700427}, map:map, icon:"img/mapicon.png", title:"SMASH"});
+
+        mark4 = new google.maps.Marker({position:{lat:43.716854, lng:-79.397269}, map:map, icon:"img/mapicon.png", title:"PHOTO"});
+
+
+
 
     };
 
@@ -143,6 +155,7 @@
         publishKey:   'AIzaSyC3-lh4LiCXQLhGptE3kT8FK9SYx3o_1WA',
         subscribeKey: 'YOUR_SUB_KEY'
     });
+
 
     pubnub.subscribe({channels: [pnChannel]});
     pubnub.addListener({message:redraw});
